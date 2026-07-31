@@ -1,0 +1,140 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Inter", "Playfair Display", Georgia, serif;
+  --font-sans: "Inter", "Plus Jakarta Sans", sans-serif;
+  --font-mono: "Inter", "JetBrains Mono", monospace;
+  --font-poppins: "Inter", "Poppins", sans-serif;
+  --font-inter: "Inter", sans-serif;
+
+  /* Custom Luxury Theme Colors (Eco-Luxury Aesthetic - Green & Rice Fields) */
+  --color-luxury-green-dark: #1F3F23; /* Dark Forest Green */
+  --color-luxury-green: #405D27; /* Rice Field Green */
+  --color-luxury-green-light: #8BA870; /* Soft Green */
+  --color-luxury-gold: #C5A859; /* Golden Rice */
+  --color-luxury-gold-dark: #A38435; /* Darker Golden Rice */
+  --color-luxury-gold-light: #DFCA81;
+  --color-luxury-beige: #FFFFFF; /* Clean White */
+  --color-luxury-beige-dark: #FDFBF8; /* Soft Warm White */
+  --color-luxury-charcoal: #232D24; /* Dark Warm Greenish-Black */
+  --color-luxury-sand: #E6EAE4; /* Soft Greenish Sand */
+}
+
+/* Base style resets and customizations */
+html, body {
+  overscroll-behavior-y: none; /* Prevents pull-to-refresh on mobile browsers */
+  overscroll-behavior: none;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-luxury-beige);
+  color: var(--color-luxury-charcoal);
+  overflow-x: hidden;
+}
+
+/* Prevent iOS auto-zoom on input focus by ensuring 16px font-size */
+@media screen and (max-width: 768px) {
+  input, select, textarea {
+    font-size: 16px !important;
+  }
+}
+
+a, button, input, select, textarea {
+  touch-action: manipulation;
+}
+
+/* Custom scrollbar to match luxury aesthetic (subtle & unobtrusive) */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.12);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.25);
+}
+
+/* Infinite Scrolling Marquee */
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 65s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+
+/* Hide scrollbar for horizontal scrolling elements */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Print Optimization CSS for PDF Export */
+@media print {
+  @page {
+    margin: 1.2cm;
+    size: A4 portrait;
+  }
+
+  html, body, #root, main {
+    height: auto !important;
+    overflow: visible !important;
+    background-color: #ffffff !important;
+    color: #111111 !important;
+    font-family: 'Inter', sans-serif !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  nav, 
+  #main-navigation, 
+  .no-print, 
+  .print\:hidden {
+    display: none !important;
+  }
+
+  .print\:block {
+    display: block !important;
+  }
+
+  /* Force background colors and images in print output */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    box-shadow: none !important;
+  }
+
+  /* Prevent elements from breaking awkwardly across page breaks in PDF */
+  section, 
+  .break-inside-avoid, 
+  .bg-white {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  a[href]:after {
+    content: none !important;
+  }
+}

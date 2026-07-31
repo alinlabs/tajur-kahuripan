@@ -1,0 +1,14 @@
+# Robots.txt - Kampung Wisata Tajur Kahuripan Purwakarta
+# https://kampungtajurkahuripan.com/
+
+User-agent: *
+Allow: /
+Allow: /gambar/
+Allow: /data/
+
+# Block unwanted crawler parameters and confidential internal routes
+Disallow: /panduan
+Disallow: /*?*query=
+
+# Sitemap location for Google Search Console & Search Engines
+Sitemap: https://kampungtajurkahuripan.com/sitemap.xml

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemap.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  
+  <!-- Main Homepage -->
+  <url>
+    <loc>https://kampungtajurkahuripan.com/</loc>
+    <lastmod>2026-07-28</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://kampungtajurkahuripan.com/gambar/metatag1.webp</image:loc>
+      <image:title>Kampung Wisata Tajur Kahuripan Purwakarta</image:title>
+      <image:caption>Pariwisata Budaya dan Alam Sunda di Tajur Kahuripan Purwakarta</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Paket Wisata -->
+  <url>
+    <loc>https://kampungtajurkahuripan.com/#paket-wisata</loc>
+    <lastmod>2026-07-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Atraksi Wisata Desa -->
+  <url>
+    <loc>https://kampungtajurkahuripan.com/#atraksi</loc>
+    <lastmod>2026-07-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Homestay & Akomodasi -->
+  <url>
+    <loc>https://kampungtajurkahuripan.com/#homestay</loc>
+    <lastmod>2026-07-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Oleh-Oleh Khas Tajur Kahuripan -->
+  <url>
+    <loc>https://kampungtajurkahuripan.com/#oleh-oleh</loc>
+    <lastmod>2026-07-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Galeri & Dokumentasi -->
+  <url>
+    <loc>https://kampungtajurkahuripan.com/#galeri</loc>
+    <lastmod>2026-07-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Lokasi & Peta Purwakarta -->
+  <url>
+    <loc>https://kampungtajurkahuripan.com/#lokasi</loc>
+    <lastmod>2026-07-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+</urlset>

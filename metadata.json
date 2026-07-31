@@ -1,0 +1,8 @@
+{
+  "name": "Kampung Wisata Tajur Kahuripan Purwakarta",
+  "description": "Destinasi pariwisata terkemuka di Purwakarta - Wisata budaya, edukasi pertanian, tenun tradisional, & homestay panggung khas Tajur Kahuripan.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

@@ -1,0 +1,163 @@
+{
+  "main_packages": [
+    {
+      "id": "saba-budaya",
+      "title": "Saba Budaya Sunda",
+      "description": "Program lengkap yang dirancang khusus untuk memperkenalkan adat istiadat, struktur arsitektur tradisional, kerajinan, hingga permainan rakyat Sunda secara interaktif.",
+      "base_price": 150000,
+      "pricing_type": "per_pax",
+      "min_pax": 100,
+      "includes": [
+        "Makan siang",
+        "Air Mineral",
+        "Pemandu Lokal Berpengalaman"
+      ],
+      "routes": [
+        {
+          "name": "Pos 1: Pengenalan Sastra & Arsitektur",
+          "activities": [
+            "Edukasi Sastra Lisan Sunda",
+            "Arsitektur Adat (Tajug, Galadag, Golodog, Kolong Para)",
+            "Aktivitas Tradisional: Nutu, Napi, Ngisikan, Nyangu, Ngakeul (proses pengolahan beras tradisional)"
+          ]
+        },
+        {
+          "name": "Pos 2: Kriya & Kerajinan",
+          "activities": [
+            "Workshop Pembuatan Anyaman Bambu Tradisional"
+          ]
+        },
+        {
+          "name": "Pos 3: Agraria & Tradisi Air",
+          "activities": [
+            "Proses pembuatan Gula Aren alami",
+            "Tandur (Menanam padi di sawah)",
+            "Ngagubyag (Menangkap ikan bersama di kolam lumpur)"
+          ]
+        },
+        {
+          "name": "Pos Paninggaran: Ketangkasan Tradisional",
+          "activities": [
+            "Permainan Ketangkasan Sunda: Sumpit (Blowpipe)",
+            "Permainan Bandring (Ketapel)",
+            "Jamparing (Panahan Tradisional)",
+            "Melintasi Cukang Oyag (Jembatan Gantung Bambu Bergoyang)"
+          ]
+        }
+      ],
+      "recreation": "Ngojai (berenang/bermain air) di kejernihan Wahangan Ciherang",
+      "image_url": "https://drive.google.com/thumbnail?id=1eZGaJEroDDK_0119C5d71QZ4AO5L7hnR&sz=w1000"
+    },
+    {
+      "id": "ulin-pelemburan",
+      "title": "Ulin di Pelemburan",
+      "description": "Rasakan kebebasan bermain di tengah bentang alam pedesaan Sunda yang asri dengan aktivitas trekking seru dan pengenalan kepedulian lingkungan.",
+      "base_price": 50000,
+      "pricing_type": "per_pax",
+      "min_pax": 10,
+      "includes": [
+        "Pemandu Trekking Lokal",
+        "Perlengkapan Keamanan Dasar",
+        "Air Mineral",
+        "Trekking alam dengan 3 pilihan rute",
+        "Edukasi interaktif mengenai Sampah Budaya di pedesaan"
+      ],
+      "image_url": "https://drive.google.com/thumbnail?id=1BU8OqHhlcmnbds7A5Iyvn9-cxuwpk7aI&sz=w1000"
+    }
+  ],
+  "optional_attractions": [
+    {
+      "id": "anyaman-bambu",
+      "title": "Anyaman Bambu",
+      "description": "Belajar langsung seni kerajinan anyaman bambu dari para maestro desa. Hasil anyaman dapat dibawa pulang sebagai cinderamata autentik.",
+      "base_price": 20000,
+      "pricing_type": "per_pax",
+      "min_pax": 35,
+      "includes": [
+        "Belajar kerajinan bambu",
+        "Hasil anyaman dibawa pulang"
+      ],
+      "image_url": "https://drive.google.com/thumbnail?id=1vbvCn2h7Z1JJ48remzBx_fFVm451O_XO&sz=w1000"
+    },
+    {
+      "id": "gula-aren",
+      "title": "Pembuatan Gula Aren",
+      "description": "Saksikan demonstrasi mendalam pengolahan air nira manis yang disadap langsung dari pohon aren hingga mengkristal menjadi gula aren premium beraroma harum.",
+      "base_price": 30000,
+      "pricing_type": "per_pax",
+      "min_pax": 20,
+      "includes": [
+        "Demonstrasi pengolahan air nira",
+        "Mencicipi gula aren alami"
+      ],
+      "image_url": "https://drive.google.com/thumbnail?id=1zEdQ-gFDEmgiC5Xp-GhXiB_MBl-VYovb&sz=w1000"
+    },
+    {
+      "id": "bajak-sawah",
+      "title": "Bajak Sawah Tradisional",
+      "description": "Pengalaman berlumpur yang penuh tawa! Belajar membajak sawah menggunakan kerbau (Nyambut) dan menanam benih padi secara mundur (Tandur).",
+      "base_price": 1000000,
+      "pricing_type": "per_group",
+      "min_pax": 30,
+      "includes": [
+        "Nyambut (Membajak dengan kerbau)",
+        "Tandur (Menanam padi)"
+      ],
+      "image_url": "https://drive.google.com/thumbnail?id=19Vi5gk1cRn8XwzJqFeMngcPYdDVOWQ-0&sz=w1000"
+    },
+    {
+      "id": "ngagubyag",
+      "title": "Ngagubyag",
+      "description": "Keseruan luar biasa menangkap puluhan ekor ikan lincah di kolam lumpur hanya menggunakan tangan kosong. Paket sudah termasuk kompensasi ikan seberat 10kg.",
+      "base_price": 800000,
+      "pricing_type": "per_group",
+      "min_pax": 30,
+      "includes": [
+        "Menangkap ikan di kolam lumpur",
+        "Kompensasi ikan seberat 10kg"
+      ],
+      "image_url": "https://drive.google.com/thumbnail?id=1qX1tSA8R_A_HsUV2EK92lNCsVikMEcW5&sz=w1000"
+    },
+    {
+      "id": "tutunggulan",
+      "title": "Tutunggulan",
+      "description": "Menumbuk padi massal menggunakan lesung dan alu kayu tradisional, di mana hasil padi seberat 10 kg bisa dibawa pulang.",
+      "base_price": 800000,
+      "pricing_type": "per_group",
+      "min_pax": 30,
+      "includes": [
+        "Menumbuk padi massal",
+        "Hasil padi seberat 10 kg bisa dibawa pulang"
+      ],
+      "image_url": "https://drive.google.com/thumbnail?id=1-dA5Zzfajp1S3aOVsxC-9XUEQ1dHzQC7&sz=w1000"
+    }
+  ],
+  "accommodations": [
+    {
+      "id": "homestay",
+      "title": "Rumah Panggung Adat",
+      "description": "Akomodasi Home Stay Autentik Sunda",
+      "base_price": 350000,
+      "pricing_type": "per_night",
+      "min_pax": 1,
+      "rooms": 2,
+      "includes": [
+        "Arsitektur kayu & bambu Sunda yang sejuk",
+        "2 Kamar Tidur nyaman dengan sprei bersih",
+        "Ruang keluarga luas bergaya lesehan",
+        "Kamar mandi bersih",
+        "Teras depan menghadap langsung ke panorama desa/sawah"
+      ],
+      "general_facilities": [
+        "Lapangan Outdoor (untuk outbound & api unggun)",
+        "Aula Pertemuan (bale pertemuan serbaguna)",
+        "Masjid Umum",
+        "Tempat Parkir luas dan aman"
+      ],
+      "signature_menu": "Nasi Liwet khas Tajur Kahuripan (dimasak tradisional dengan kayu bakar, disajikan hangat dengan ikan asin, tahu, tempe, lalapan segar, dan sambal goang)",
+      "check_in_time": "14:00 WIB (Check-In) - 14:00 WIB (Check-Out)",
+      "payment_method": "Transfer Rekening Bisnis (setelah konfirmasi rincian kuota & tanggal via WhatsApp)",
+      "image_url": "https://drive.google.com/thumbnail?id=1hhFKSmRNzfoJFcTRGxN1pbv5dFlGckoJ&sz=w1000"
+    }
+  ]
+}
