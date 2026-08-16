@@ -72,13 +72,7 @@ export default function RencanaPage({ data }: RencanaPageProps) {
     selectedPackages.forEach((id) => {
       const pkg = data.main_packages.find((p) => p.id === id);
       if (pkg) {
-        if (pkg.pricing_type === "per_pax") {
-          const minP = pkg.min_pax || 30;
-          const effectivePax = Math.max(pax, minP);
-          pkgCost += effectivePax * pkg.base_price;
-        } else {
-          pkgCost += pkg.base_price;
-        }
+        pkgCost += pkg.pricing_type === "per_pax" ? pax * pkg.base_price : pkg.base_price;
       }
     });
 
@@ -91,14 +85,7 @@ export default function RencanaPage({ data }: RencanaPageProps) {
     selectedAttractions.forEach(id => {
       const att = data.optional_attractions.find(a => a.id === id);
       if (att) {
-        if (att.pricing_type === "per_pax") {
-          const minP = att.min_pax || 1;
-          const effectivePax = Math.max(pax, minP);
-          attrCost += effectivePax * att.base_price;
-        } else {
-          // per_group items have a fixed flat rate regardless of pax count
-          attrCost += att.base_price;
-        }
+        attrCost += att.pricing_type === "per_pax" ? pax * att.base_price : att.base_price;
       }
     });
 
@@ -379,24 +366,13 @@ Sampurasun Admin Tajur Kahuripan, mohon konfirmasi ketersediaan kuota rombongan 
                             </h4>
                           </div>
 
-                          <div className="flex flex-col gap-1 w-full mt-auto">
-                            <div className="flex items-center justify-between w-full">
-                              <span className="font-poppins text-xs sm:text-sm font-bold text-stone-900">
-                                {formatIDR(pkg.base_price)}
-                                <span className="text-[10px] text-stone-400 font-normal ml-0.5">
-                                  /{pkg.pricing_type === 'per_pax' ? 'pax' : 'grup'}
-                                </span>
+                          <div className="flex items-center justify-between w-full mt-auto">
+                            <span className="font-poppins text-xs sm:text-sm font-bold text-stone-900">
+                              {formatIDR(pkg.base_price)}
+                              <span className="text-[10px] text-stone-400 font-normal ml-0.5">
+                                /{pkg.pricing_type === 'per_pax' ? 'pax' : 'grup'}
                               </span>
-                            </div>
-                            {pkg.pricing_type === 'per_pax' && (
-                              <span className="text-[10px] font-poppins text-stone-500">
-                                {pax < (pkg.min_pax || 30) ? (
-                                  <span className="text-amber-700 font-medium">*Tarif min. {pkg.min_pax || 30} pax tetap berlaku</span>
-                                ) : (
-                                  <span>Min. {pkg.min_pax || 30} pax</span>
-                                )}
-                              </span>
-                            )}
+                            </span>
                           </div>
                         </div>
                       </motion.button>
@@ -523,15 +499,10 @@ Sampurasun Admin Tajur Kahuripan, mohon konfirmasi ketersediaan kuota rombongan 
                               </h4>
                             </div>
 
-                            <div className="flex flex-col gap-0.5 w-full mt-auto">
-                              <div className="flex items-center justify-between w-full">
-                                <span className="font-poppins text-xs sm:text-sm font-bold text-stone-900">
-                                  +{formatIDR(att.base_price)}
-                                  <span className="text-[10px] text-stone-400 font-normal ml-0.5">/grup</span>
-                                </span>
-                              </div>
-                              <span className="text-[10px] text-stone-500 font-poppins font-medium">
-                                Harga tetap per grup (mis. 20 pax tetap {formatIDR(att.base_price)})
+                            <div className="flex items-center justify-between w-full mt-auto">
+                              <span className="font-poppins text-xs sm:text-sm font-bold text-stone-900">
+                                +{formatIDR(att.base_price)}
+                                <span className="text-[10px] text-stone-400 font-normal ml-0.5">/grup</span>
                               </span>
                             </div>
                           </div>
@@ -623,18 +594,11 @@ Sampurasun Admin Tajur Kahuripan, mohon konfirmasi ketersediaan kuota rombongan 
         <div className="max-w-2xl mx-auto flex flex-col gap-2.5">
           {/* Info Line: Estimasi Peserta, Total Nominal & Estimasi Per Orang */}
           <div className="flex items-start justify-between text-xs sm:text-sm font-poppins px-1 gap-2">
-            <div className="flex flex-col gap-0.5">
-              <div className="flex items-center gap-1.5 text-stone-600">
-                <span className="font-medium text-stone-500">Estimasi Peserta:</span>
-                <span className="bg-amber-50 text-luxury-green-dark px-2.5 py-0.5 rounded-full font-bold border border-luxury-gold/30">
-                  {pax} Pax
-                </span>
-              </div>
-              {pax < 30 && selectedPackages.length > 0 && (
-                <span className="text-[10px] text-amber-700 font-medium">
-                  *Tarif min. 30 pax berlaku
-                </span>
-              )}
+            <div className="flex items-center gap-1.5 text-stone-600">
+              <span className="font-medium text-stone-500">Estimasi Peserta:</span>
+              <span className="bg-amber-50 text-luxury-green-dark px-2.5 py-0.5 rounded-full font-bold border border-luxury-gold/30">
+                {pax} Pax
+              </span>
             </div>
 
             <div className="flex flex-col items-end gap-0.5 text-right">
