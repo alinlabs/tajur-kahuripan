@@ -93,43 +93,110 @@
       "image_url": "https://drive.google.com/thumbnail?id=1zEdQ-gFDEmgiC5Xp-GhXiB_MBl-VYovb&sz=w1000"
     },
     {
+      "id": "belajar-suling",
+      "title": "Belajar Bermain Suling",
+      "description": "Mengenal tangga nada alunan instrumen suling bambu tradisional khas Sunda dibimbing oleh seniman lokal.",
+      "base_price": 25000,
+      "pricing_type": "per_pax",
+      "min_pax": 1,
+      "includes": [
+        "Edukasi musik tradisional",
+        "Praktek memainkan suling bambu"
+      ],
+      "image_url": "/gambar/atraksi4.webp"
+    },
+    {
       "id": "bajak-sawah",
-      "title": "Bajak Sawah Tradisional",
-      "description": "Pengalaman berlumpur yang penuh tawa! Belajar membajak sawah menggunakan kerbau (Nyambut) dan menanam benih padi secara mundur (Tandur).",
+      "title": "Bajak Sawah & Tandur, Tracking, Belajar Bermain Gamelan",
+      "description": "Pengalaman membajak sawah dengan kerbau (Nyambut), menanam padi (Tandur), jalan-jalan jelajah alam (Tracking), serta latihan bermain gamelan.",
       "base_price": 1000000,
       "pricing_type": "per_group",
       "min_pax": 30,
       "includes": [
-        "Nyambut (Membajak dengan kerbau)",
-        "Tandur (Menanam padi)"
+        "Membajak Sawah dengan Kerbau & Tandur",
+        "Tracking Jelajah Alam",
+        "Latihan Bermain Gamelan"
       ],
       "image_url": "https://drive.google.com/thumbnail?id=19Vi5gk1cRn8XwzJqFeMngcPYdDVOWQ-0&sz=w1000"
     },
     {
-      "id": "ngagubyag",
-      "title": "Ngagubyag",
-      "description": "Keseruan luar biasa menangkap puluhan ekor ikan lincah di kolam lumpur hanya menggunakan tangan kosong. Paket sudah termasuk kompensasi ikan seberat 10kg.",
-      "base_price": 800000,
+      "id": "sejarah-rumah-adat",
+      "title": "Mengenal Sejarah Kampung Tajur & Keunikan Rumah Adat",
+      "description": "Edukasi sejarah berdirinya Kampung Adat Tajur, struktur arsitektur rumah panggung Sunda, serta filosofi kehidupan bermasyarakat.",
+      "base_price": 300000,
       "pricing_type": "per_group",
       "min_pax": 30,
       "includes": [
-        "Menangkap ikan di kolam lumpur",
-        "Kompensasi ikan seberat 10kg"
+        "Pemandu Edukasi Budaya",
+        "Penjelasan Filosofi Rumah Adat Tajur"
       ],
-      "image_url": "https://drive.google.com/thumbnail?id=1qX1tSA8R_A_HsUV2EK92lNCsVikMEcW5&sz=w1000"
+      "image_url": "https://drive.google.com/thumbnail?id=1eZGaJEroDDK_0119C5d71QZ4AO5L7hnR&sz=w1000"
+    },
+    {
+      "id": "perkakas-tradisional",
+      "title": "Mengenal Nama & Fungsi Perkakas Tradisional",
+      "description": "Pengenalan aneka peralatan perkakas rumah tangga dan bertani tradisional Sunda beserta cara penggunaan dan fungsinya.",
+      "base_price": 400000,
+      "pricing_type": "per_group",
+      "min_pax": 30,
+      "includes": [
+        "Edukasi Alat Tradisional",
+        "Demonstrasi Praktis"
+      ],
+      "image_url": "/gambar/atraksi1.webp"
+    },
+    {
+      "id": "kuliner-berkebun",
+      "title": "Belajar Membuat Wajik Kararas, Renggining, Keripik Pisang, Berkebun & Mencoba Alat Berburu",
+      "description": "Praktik langsung membuat kuliner olahan khas Tajur, aktivitas bercocok tanam di kebun, serta mencoba alat ketangkasan berburu tradisional.",
+      "base_price": 700000,
+      "pricing_type": "per_group",
+      "min_pax": 30,
+      "includes": [
+        "Workshop Kuliner Tradisional",
+        "Aktivitas Berkebun",
+        "Simulasi Alat Berburu Tradisional"
+      ],
+      "image_url": "/gambar/atraksi2.webp"
+    },
+    {
+      "id": "api-unggun",
+      "title": "Api Unggun",
+      "description": "Sesi keakraban malam hari di ruang terbuka dengan suasana hangat diiringi nuansa alam pedesaan.",
+      "base_price": 700000,
+      "pricing_type": "per_group",
+      "min_pax": 30,
+      "includes": [
+        "Kayu Bakar & Setting Api Unggun",
+        "Fasilitas Lapangan"
+      ],
+      "image_url": "/gambar/banner3.webp"
     },
     {
       "id": "tutunggulan",
-      "title": "Tutunggulan",
-      "description": "Menumbuk padi massal menggunakan lesung dan alu kayu tradisional, di mana hasil padi seberat 10 kg bisa dibawa pulang.",
+      "title": "Belajar Tutunggulan / Nutu",
+      "description": "Seni menumbuk padi massal menggunakan lesung dan alu kayu tradisional Sunda yang irama ketukannya khas dan meriah.",
+      "base_price": 700000,
+      "pricing_type": "per_group",
+      "min_pax": 30,
+      "includes": [
+        "Menumbuk Padi Massal",
+        "Seni Musik Nutu Traditional"
+      ],
+      "image_url": "https://drive.google.com/thumbnail?id=1-dA5Zzfajp1S3aOVsxC-9XUEQ1dHzQC7&sz=w1000"
+    },
+    {
+      "id": "ngagubyag",
+      "title": "Menangkap Ikan",
+      "description": "Keseruan luar biasa menangkap ikan bersama di kolam lumpur menggunakan tangan kosong khas acara tradisi rakyat.",
       "base_price": 800000,
       "pricing_type": "per_group",
       "min_pax": 30,
       "includes": [
-        "Menumbuk padi massal",
-        "Hasil padi seberat 10 kg bisa dibawa pulang"
+        "Aktivitas Ngagubyag Ikan",
+        "Kompensasi Ikan Tangkapan"
       ],
-      "image_url": "https://drive.google.com/thumbnail?id=1-dA5Zzfajp1S3aOVsxC-9XUEQ1dHzQC7&sz=w1000"
+      "image_url": "https://drive.google.com/thumbnail?id=1qX1tSA8R_A_HsUV2EK92lNCsVikMEcW5&sz=w1000"
     }
   ],
   "accommodations": [
