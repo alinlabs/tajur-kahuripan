@@ -64,72 +64,110 @@ export default function RencanaPage({ data }: RencanaPageProps) {
     setVisitDate(dateStr);
   };
 
+  const neededHouses = Math.ceil(pax / 4);
+
   // Price Calculation
   const calculation = useMemo(() => {
     let pkgCost = 0;
     selectedPackages.forEach((id) => {
       const pkg = data.main_packages.find((p) => p.id === id);
       if (pkg) {
-        pkgCost += pkg.pricing_type === "per_pax" ? pkg.base_price * pax : pkg.base_price;
+        if (pkg.pricing_type === "per_pax") {
+          const minP = pkg.min_pax || 30;
+          const effectivePax = Math.max(pax, minP);
+          pkgCost += effectivePax * pkg.base_price;
+        } else {
+          pkgCost += pkg.base_price;
+        }
       }
     });
 
     let homestayCost = 0;
     if (needHomestay && firstHomestay) {
-      homestayCost = firstHomestay.pricing_type === "per_pax" 
-        ? firstHomestay.base_price * pax 
-        : firstHomestay.base_price;
+      homestayCost = neededHouses * firstHomestay.base_price;
     }
 
     let attrCost = 0;
     selectedAttractions.forEach(id => {
       const att = data.optional_attractions.find(a => a.id === id);
       if (att) {
-        attrCost += att.pricing_type === "per_pax" ? att.base_price * pax : att.base_price;
+        if (att.pricing_type === "per_pax") {
+          const minP = att.min_pax || 1;
+          const effectivePax = Math.max(pax, minP);
+          attrCost += effectivePax * att.base_price;
+        } else {
+          // per_group items have a fixed flat rate regardless of pax count
+          attrCost += att.base_price;
+        }
       }
     });
+
+    const total = pkgCost + homestayCost + attrCost;
+    const costPerPax = pax > 0 ? Math.round(total / pax) : 0;
 
     return {
       pkgCost,
       homestayCost,
       attrCost,
-      total: pkgCost + homestayCost + attrCost
+      total,
+      costPerPax
     };
-  }, [selectedPackages, needHomestay, firstHomestay, selectedAttractions, pax, data]);
+  }, [selectedPackages, needHomestay, firstHomestay, selectedAttractions, pax, data, neededHouses]);
 
   const getMessageText = () => {
-    const formattedDate = visitDate 
-      ? new Date(visitDate).toLocaleDateString("id-ID", {
+    let formattedDate = "-";
+    if (visitDate) {
+      const parts = visitDate.split("-");
+      if (parts.length === 3) {
+        const d = new Date(parseInt(parts[0]), parseInt(parts[1]) - 1, parseInt(parts[2]));
+        formattedDate = d.toLocaleDateString("id-ID", {
           weekday: "long",
-          year: "numeric",
+          day: "numeric",
           month: "long",
-          day: "numeric"
-        })
-      : "-";
+          year: "numeric"
+        });
+      }
+    }
 
     const selectedPkgObjs = data.main_packages.filter(p => selectedPackages.includes(p.id));
-    const packageNames = selectedPkgObjs.map(p => p.title).join(", ");
-    const homestayPriceText = firstHomestay ? formatIDR(firstHomestay.base_price) : "Rp 350.000";
+    const homestayTotalCost = neededHouses * (firstHomestay?.base_price || 350000);
 
-    const attractionNames = selectedAttractions
-      .map(id => data.optional_attractions.find(a => a.id === id)?.title)
-      .filter(Boolean)
-      .join(", ");
+    const attractionObjs = selectedAttractions
+      .map(id => data.optional_attractions.find(a => a.id === id))
+      .filter((a): a is NonNullable<typeof a> => Boolean(a));
 
-    return `Sampurasun Admin Tajur Kahuripan,
+    const pkgSection = selectedPkgObjs.length > 0 
+      ? selectedPkgObjs.map(p => `• ${p.title}`).join("\n") 
+      : "• Tidak memilih paket utama (Opsional/Bebas)";
 
-Saya ingin memesan rencana kunjungan rombongan dengan rincian berikut:
+    const attrSection = attractionObjs.length > 0
+      ? `\n*Kegiatan Tambahan:*\n${attractionObjs.map(a => `• ${a.title}`).join("\n")}`
+      : "";
+
+    return `*Rencana Kunjungan Wisata Kampung Adat Tajur*
 
 *Detail Rombongan:*
 • Nama / Instansi: ${name || "-"}
-• Rencana Tanggal Kunjungan: ${formattedDate}
-• Jumlah Anggota Peserta: ${pax} Orang
+• Tanggal Kunjungan: ${formattedDate}
+• Jumlah Peserta: ${pax} Orang
 
 *Paket & Fasilitas Terpilih:*
-• Paket Utama: ${packageNames || "Tidak Ada (Hanya Fasilitas / Opsional)"}
-• Penginapan Homestay Warga: ${needHomestay ? `Ya (${homestayPriceText}/malam)` : "Tidak"}
-${attractionNames ? `• Kegiatan Seni/Budaya: ${attractionNames}\n` : ""}
-Mohon konfirmasi ketersediaan kuota rombongan kami pada tanggal tersebut. Hatur nuhun.`;
+*Paket Utama:*
+${pkgSection}
+
+*Penginapan Homestay Warga:*
+• ${needHomestay ? `Ya (${neededHouses} Rumah Adat - Kapasitas 4 orang/rumah)` : "Tidak Perlu"}
+${attrSection}
+
+*Rincian Estimasi Biaya:*
+• Paket Utama: ${formatIDR(calculation.pkgCost)}
+• Penginapan (${needHomestay ? neededHouses : 0} Rumah): ${formatIDR(calculation.homestayCost)}
+• Kegiatan Tambahan: ${formatIDR(calculation.attrCost)}
+───────────────
+*TOTAL ESTIMASI:* ${formatIDR(calculation.total)}
+*ESTIMASI PER PAX:* ± ${formatIDR(calculation.costPerPax)} / orang
+
+Sampurasun Admin Tajur Kahuripan, mohon konfirmasi ketersediaan kuota rombongan kami pada tanggal tersebut. Hatur nuhun.`;
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -341,13 +379,24 @@ Mohon konfirmasi ketersediaan kuota rombongan kami pada tanggal tersebut. Hatur 
                             </h4>
                           </div>
 
-                          <div className="flex items-center justify-between w-full mt-auto">
-                            <span className="font-poppins text-xs sm:text-sm font-bold text-stone-900">
-                              {formatIDR(pkg.base_price)}
-                              <span className="text-[10px] text-stone-400 font-normal ml-0.5">
-                                /{pkg.pricing_type === 'per_pax' ? 'pax' : 'grup'}
+                          <div className="flex flex-col gap-1 w-full mt-auto">
+                            <div className="flex items-center justify-between w-full">
+                              <span className="font-poppins text-xs sm:text-sm font-bold text-stone-900">
+                                {formatIDR(pkg.base_price)}
+                                <span className="text-[10px] text-stone-400 font-normal ml-0.5">
+                                  /{pkg.pricing_type === 'per_pax' ? 'pax' : 'grup'}
+                                </span>
                               </span>
-                            </span>
+                            </div>
+                            {pkg.pricing_type === 'per_pax' && (
+                              <span className="text-[10px] font-poppins text-stone-500">
+                                {pax < (pkg.min_pax || 30) ? (
+                                  <span className="text-amber-700 font-medium">*Tarif min. {pkg.min_pax || 30} pax tetap berlaku</span>
+                                ) : (
+                                  <span>Min. {pkg.min_pax || 30} pax</span>
+                                )}
+                              </span>
+                            )}
                           </div>
                         </div>
                       </motion.button>
@@ -433,7 +482,7 @@ Mohon konfirmasi ketersediaan kuota rombongan kami pada tanggal tersebut. Hatur 
                     .filter((att) => att.pricing_type === "per_group")
                     .map((att, idx) => {
                       const isSelected = selectedAttractions.includes(att.id);
-                      const isFullWidth = idx === 0 || att.title.toLowerCase().includes("bajak");
+                      const isFullWidth = att.id === "bajak-sawah" || att.title.toLowerCase().includes("bajak");
                       return (
                         <motion.button
                           key={att.id}
@@ -474,10 +523,15 @@ Mohon konfirmasi ketersediaan kuota rombongan kami pada tanggal tersebut. Hatur 
                               </h4>
                             </div>
 
-                            <div className="flex items-center justify-between w-full mt-auto">
-                              <span className="font-poppins text-xs sm:text-sm font-bold text-stone-900">
-                                +{formatIDR(att.base_price)}
-                                <span className="text-[10px] text-stone-400 font-normal ml-0.5">/grup</span>
+                            <div className="flex flex-col gap-0.5 w-full mt-auto">
+                              <div className="flex items-center justify-between w-full">
+                                <span className="font-poppins text-xs sm:text-sm font-bold text-stone-900">
+                                  +{formatIDR(att.base_price)}
+                                  <span className="text-[10px] text-stone-400 font-normal ml-0.5">/grup</span>
+                                </span>
+                              </div>
+                              <span className="text-[10px] text-stone-500 font-poppins font-medium">
+                                Harga tetap per grup (mis. 20 pax tetap {formatIDR(att.base_price)})
                               </span>
                             </div>
                           </div>
@@ -534,13 +588,21 @@ Mohon konfirmasi ketersediaan kuota rombongan kami pada tanggal tersebut. Hatur 
                             <h4 className="font-sans font-bold text-xs sm:text-sm md:text-base text-stone-800 line-clamp-2 leading-snug">
                               {acc.title}
                             </h4>
+                            <p className="text-[11px] sm:text-xs text-stone-500 font-poppins mt-1">
+                              Kapasitas 4 orang / rumah adat ({pax} peserta = <span className="font-semibold text-stone-700">{neededHouses} rumah</span>)
+                            </p>
                           </div>
 
-                          <div className="flex items-center justify-between w-full mt-auto">
+                          <div className="flex flex-col sm:flex-row sm:items-center justify-between w-full mt-auto pt-1 gap-1">
                             <span className="font-poppins text-xs sm:text-sm font-bold text-stone-900">
                               +{formatIDR(acc.base_price)}
-                              <span className="text-[10px] text-stone-400 font-normal ml-0.5">/malam</span>
+                              <span className="text-[10px] text-stone-400 font-normal ml-0.5">/ rumah / malam</span>
                             </span>
+                            {isSelected && (
+                              <span className="text-[11px] sm:text-xs font-bold text-[#91BA5A] font-poppins">
+                                Total ({neededHouses} Rumah): {formatIDR(neededHouses * acc.base_price)}/malam
+                              </span>
+                            )}
                           </div>
                         </div>
                       </motion.button>
@@ -559,19 +621,32 @@ Mohon konfirmasi ketersediaan kuota rombongan kami pada tanggal tersebut. Hatur 
       {/* Bottom Navigation Bar for Rencana Page */}
       <div className="fixed bottom-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-t border-stone-200/90 shadow-[0_-4px_25px_rgba(0,0,0,0.12)] px-4 py-3 pb-safe">
         <div className="max-w-2xl mx-auto flex flex-col gap-2.5">
-          {/* Info Line: Estimasi Peserta & Total Nominal */}
-          <div className="flex items-center justify-between text-xs sm:text-sm font-poppins px-1">
-            <div className="flex items-center gap-1.5 text-stone-600">
-              <span className="font-medium text-stone-500">Estimasi Peserta:</span>
-              <span className="bg-amber-50 text-luxury-green-dark px-2.5 py-0.5 rounded-full font-bold border border-luxury-gold/30">
-                {pax} Pax
-              </span>
+          {/* Info Line: Estimasi Peserta, Total Nominal & Estimasi Per Orang */}
+          <div className="flex items-start justify-between text-xs sm:text-sm font-poppins px-1 gap-2">
+            <div className="flex flex-col gap-0.5">
+              <div className="flex items-center gap-1.5 text-stone-600">
+                <span className="font-medium text-stone-500">Estimasi Peserta:</span>
+                <span className="bg-amber-50 text-luxury-green-dark px-2.5 py-0.5 rounded-full font-bold border border-luxury-gold/30">
+                  {pax} Pax
+                </span>
+              </div>
+              {pax < 30 && selectedPackages.length > 0 && (
+                <span className="text-[10px] text-amber-700 font-medium">
+                  *Tarif min. 30 pax berlaku
+                </span>
+              )}
             </div>
-            <div className="flex items-center gap-1.5">
-              <span className="text-stone-500 font-medium">Total Nominal:</span>
-              <span className="font-sans font-bold text-base sm:text-lg text-luxury-green-dark">
-                {formatIDR(calculation.total)}
-              </span>
+
+            <div className="flex flex-col items-end gap-0.5 text-right">
+              <div className="flex items-center gap-1.5">
+                <span className="text-stone-500 font-medium">Total Nominal:</span>
+                <span className="font-sans font-bold text-base sm:text-lg text-luxury-green-dark">
+                  {formatIDR(calculation.total)}
+                </span>
+              </div>
+              <div className="text-[11px] sm:text-xs text-stone-600 font-medium">
+                Estimasi per orang: <span className="font-bold text-stone-900">{formatIDR(calculation.costPerPax)}</span> / pax
+              </div>
             </div>
           </div>
 
