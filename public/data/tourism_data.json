@@ -77,7 +77,7 @@
         "Belajar kerajinan bambu",
         "Hasil anyaman dibawa pulang"
       ],
-      "image_url": "https://drive.google.com/thumbnail?id=1vbvCn2h7Z1JJ48remzBx_fFVm451O_XO&sz=w1000"
+      "image_url": "https://drive.google.com/thumbnail?id=19-F5fXT3rFrF6L_8mpo3Yn9Rvk-AB6Z7&sz=w1000"
     },
     {
       "id": "gula-aren",
@@ -94,16 +94,16 @@
     },
     {
       "id": "belajar-suling",
-      "title": "Belajar Bermain Suling",
-      "description": "Mengenal tangga nada alunan instrumen suling bambu tradisional khas Sunda dibimbing oleh seniman lokal.",
+      "title": "Belajar Bermain Alat Musik",
+      "description": "Mengenal tangga nada alunan instrumen suling bambu dan instrumen musik tradisional khas Sunda dibimbing oleh seniman lokal.",
       "base_price": 25000,
       "pricing_type": "per_pax",
       "min_pax": 1,
       "includes": [
         "Edukasi musik tradisional",
-        "Praktek memainkan suling bambu"
+        "Praktek memainkan instrumen musik tradisional"
       ],
-      "image_url": "/gambar/atraksi4.webp"
+      "image_url": "https://drive.google.com/thumbnail?id=1w_Xx3bBZK2PqxzhWAJjcdpBVFfFMaRrH&sz=w1000"
     },
     {
       "id": "bajak-sawah",
@@ -117,7 +117,7 @@
         "Tracking Jelajah Alam",
         "Latihan Bermain Gamelan"
       ],
-      "image_url": "https://drive.google.com/thumbnail?id=19Vi5gk1cRn8XwzJqFeMngcPYdDVOWQ-0&sz=w1000"
+      "image_url": "https://drive.google.com/thumbnail?id=1-Bte1x83DVsbKVX0vsv0cZlRxr_QOHVM&sz=w1000"
     },
     {
       "id": "sejarah-rumah-adat",
@@ -143,7 +143,7 @@
         "Edukasi Alat Tradisional",
         "Demonstrasi Praktis"
       ],
-      "image_url": "/gambar/atraksi1.webp"
+      "image_url": "https://drive.google.com/thumbnail?id=1ZabG9jU3qR-o9iBR0y4-scL8zY0QMSsj&sz=w1000"
     },
     {
       "id": "kuliner-berkebun",
@@ -157,7 +157,7 @@
         "Aktivitas Berkebun",
         "Simulasi Alat Berburu Tradisional"
       ],
-      "image_url": "/gambar/atraksi2.webp"
+      "image_url": "https://drive.google.com/thumbnail?id=1iPLRvwIDbdOyUTBg4z9Kdv62M_yMVltj&sz=w1000"
     },
     {
       "id": "api-unggun",
@@ -170,7 +170,7 @@
         "Kayu Bakar & Setting Api Unggun",
         "Fasilitas Lapangan"
       ],
-      "image_url": "/gambar/banner3.webp"
+      "image_url": "https://drive.google.com/thumbnail?id=1USqBAcEsGLIkLdsD8AR8SURbuaFY4oB3&sz=w1000"
     },
     {
       "id": "tutunggulan",
@@ -183,7 +183,7 @@
         "Menumbuk Padi Massal",
         "Seni Musik Nutu Traditional"
       ],
-      "image_url": "https://drive.google.com/thumbnail?id=1-dA5Zzfajp1S3aOVsxC-9XUEQ1dHzQC7&sz=w1000"
+      "image_url": "https://drive.google.com/thumbnail?id=1wiXJZe33dK_VZ5MOwJt9Hi0KG4NIDOFf&sz=w1000"
     },
     {
       "id": "ngagubyag",
